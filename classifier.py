@@ -6,17 +6,23 @@ from sklearn.base import BaseEstimator
 
 class Classifier(BaseEstimator):
 
-    def __init__(self):
+    def __init__(self, rf_max_depth=5, rf_n_estimators=20, n_estimators=10, n_jobs=1):
+        self.rf_max_depth = rf_max_depth
+        self.rf_n_estimators = rf_n_estimators
+        self.n_estimators = n_estimators
+        self.n_jobs = n_jobs
+
+    def fit(self, X, y):
         self.clf = Pipeline([
             ('rf', AdaBoostClassifier(
                 base_estimator=RandomForestClassifier(
-                    max_depth=5, n_estimators=30),
-                n_estimators=10)
+                    max_depth=self.rf_max_depth, n_estimators=self.rf_n_estimators,
+                    n_jobs=self.n_jobs),
+                n_estimators=self.n_estimators)
              )
         ])
-
-    def fit(self, X, y):
         self.clf.fit(X, y)
+        return self
 
     def predict(self, X):
         return self.clf.predict(X)

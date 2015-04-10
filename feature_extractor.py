@@ -42,7 +42,7 @@ class FeatureExtractor(object):
         pass
 
     def fit(self, X_dict, y):
-        pass
+        return self
 
     def transform(self, X_dict):
         n_points_per_period = 200
@@ -50,7 +50,7 @@ class FeatureExtractor(object):
         sampling_rate = n_points_per_period / bins_per_period
         t_test = np.linspace(-2 * np.pi, 4 * np.pi, 3 * n_points_per_period)
         num_gp_bins = 12
-        gp_bins = [i * 2 * np.pi / num_gp_bins for i in range(num_gp_bins + 1)]
+        gp_bins = np.linspace(0, 2 * np.pi, num_gp_bins + 1)
 
         X = []
         for ii, x in enumerate(X_dict):
