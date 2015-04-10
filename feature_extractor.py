@@ -57,7 +57,9 @@ class FeatureExtractor(object):
             if ii % 100 == 0:
                 print ii
             real_period = x['period'] / x['div_period']
-            x_new = [x['magnitude_b'], x['magnitude_r'], real_period, x['asym_b'], x['asym_r']]
+            x_new = [x['magnitude_b'], x['magnitude_r'], real_period,
+                     x['asym_b'], x['asym_r'], x['sigma_flux_b'], x['sigma_flux_r'],
+                     x['log_p_not_variable']]
             for color in ['r', 'b']:
                 unfold_sample(x, color=color)
                 x_train = x['phase_' + color]
