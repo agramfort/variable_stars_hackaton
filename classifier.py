@@ -6,7 +6,7 @@ from sklearn.base import BaseEstimator
 
 class Classifier(BaseEstimator):
 
-    def __init__(self, rf_max_depth=5, rf_n_estimators=20, n_estimators=10, n_jobs=1):
+    def __init__(self, rf_max_depth=10, rf_n_estimators=50, n_estimators=50, n_jobs=1):
         self.rf_max_depth = rf_max_depth
         self.rf_n_estimators = rf_n_estimators
         self.n_estimators = n_estimators
